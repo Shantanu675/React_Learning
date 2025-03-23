@@ -10,9 +10,9 @@ function App() {
   const [convertedAmount, setConvertedAmount] = useState(0)
 
   const currencyInfo = useCurrencyInfo(from)
-
+  
   const options = Object.keys(currencyInfo)
-
+  
   const swap = () => {
     setFrom(to)
     setTo(from)
@@ -20,9 +20,24 @@ function App() {
     setAmount(convertedAmount)
   }
 
+  //I,m Stuck here so I take help from chatGpt
   const convert = () => {
-    setConvertedAmount(amount * currencyInfo)
+    // If the conversion rate is found for the 'from' currency, use it.
+    let conversionRate = currencyInfo[to];
+
+    // If no direct conversion rate exists (for reverse conversion), invert the rate.
+    if (!conversionRate) {
+      conversionRate = 1 / currencyInfo[from];  // Reverse the conversion
+    }
+
+    // Apply the conversion rate to calculate the converted amount
+    setConvertedAmount(amount * conversionRate)
   }
+
+  // Old mothot of convert
+//   const convert = () => {
+//     setConvertedAmount(amount * parseInt(currencyInfo[to]))
+//   }
 
   return (
     <div
@@ -44,8 +59,8 @@ function App() {
                             label="From"
                             amount={amount}
                             currencyOptions={options}
-                            currencyChange={(currency) =>
-                              setAmount(amount)
+                            onCurrencyChange={(currency) =>
+                              setFrom(currency)
                             }
                             selectCurrency={from}
                             onAmountChange={(amount) => setAmount(amount)}
@@ -65,7 +80,7 @@ function App() {
                             label="To"
                             amount={convertedAmount}
                             currencyOptions={options}
-                            currencyChange={(currency) =>
+                            onCurrencyChange={(currency) =>
                               setTo(currency)
                             }
                             selectCurrency={to}
@@ -74,8 +89,7 @@ function App() {
                     </div>
                     <button 
                         type="submit" 
-                        className="font-bold w-full bg-green-800 text-white px-4 py-3 rounded-lg"
-                        onClick={convert}
+                        className="font-bold w-full bg-green-700 text-white px-4 py-3 rounded-lg"
                     >
                         Convert {from.toUpperCase()} to {to.toUpperCase()}
                     </button>
