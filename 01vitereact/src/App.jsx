@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
     <Chai/>
-    <h1>chai aur react {username}</h1> evaluated expression
+    <h1>chai aur react {username}</h1> {/*evaluated expression*/}
     <p>test para</p>
     </div>
   )
