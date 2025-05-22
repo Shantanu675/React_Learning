@@ -1,6 +1,6 @@
 import React from "react"
 
-function Card({name, btnText="Visit me"}){
+function Card(){name, btnText="Visit me"}{
     console.log(name);
     
     return(
