@@ -35,7 +35,7 @@ function App() {
               className="px-5 py-2.5 rounded-full text-white text-sm tracking-wider font-medium border border-current outline-none bg-[#d60a73] hover:bg-[#bd228c] active:bg-[#f02bd9]">Pink</button>
           </div>
         </div>
-        
+          
     </div>
   )
 }
