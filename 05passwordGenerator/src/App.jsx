@@ -7,11 +7,11 @@ function App() {
   const [symbolAllowed, setSymbolAllowed] = useState(false)
   const [password, setPassword] = useState("")
 
-  //ref hook
+  //useRef hook
   const passwordRef = useRef(null)
 
 
-  const generatePassword = useCallback( () => {
+  const generatePassword = useCallback( () => { // make more optimized because temporary memory contains some values
     let password = ""
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
@@ -25,7 +25,7 @@ function App() {
 
     setPassword(password) // For optimizatiom
 
-  }, [length, numberAllowed, symbolAllowed, setPassword])
+  }, [length, numberAllowed, symbolAllowed, setPassword])// this list keep in cache(temporary memory when i want I will use quickly)
 
   const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select()
@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     generatePassword()
-  }, [length, numberAllowed, symbolAllowed, generatePassword])
+  }, [length, numberAllowed, symbolAllowed, generatePassword])// changes in any field in array call useEffect
 
   return (
     <>
