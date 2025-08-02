@@ -60,7 +60,12 @@ export default function Post() {
                 </div>
                 <div className="browser-css">
                     {parse(post.content)}
-                    </div>
+                </div>
+                <div className="text-blue-700 font-extrabold">
+                    {`${userData.name}`}
+                    <br />
+                    {`@${userData.email}`}
+                </div>
             </Container>
         </div>
     ) : null;

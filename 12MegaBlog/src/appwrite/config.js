@@ -33,7 +33,7 @@ export class Service{
         }
     }
 
-    async updatePost({slug, title, content, featuredimage, status}){
+    async updatePost({slug, title, content, featuredImage, status}){
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -42,7 +42,7 @@ export class Service{
                 {
                     title, 
                     content, 
-                    featuredimage, 
+                    featuredImage, 
                     status
                 }
             )
@@ -92,7 +92,6 @@ export class Service{
         }
     }
 
-    //services for uploading files
     async uploadFile(file){
         try {
             return await this.bucket.createFile(
@@ -120,7 +119,6 @@ export class Service{
     }
 
     getFileView(fileId){
-        console.log("."+fileId+".");
         
         return this.bucket.getFileView(
             conf.appwriteBucketId,

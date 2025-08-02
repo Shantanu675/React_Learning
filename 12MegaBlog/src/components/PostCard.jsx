@@ -7,15 +7,14 @@ function PostCard({$id, title, featuredImage}){
     return(
         <Link to={`/post/${$id}`}>
             <div className="w-full bg-gray-300 rounded-xl p-4">
-                <div className="w-full justify-center mb-4">
-                {`${"."+featuredImage+"."+typeof(featuredImage)}`}
+                <div className="w-full justify-center content-center mb-4">
                     <img src={appwriteService.getFileView(featuredImage)} alt={title} 
                     className="rounded-xl"/>
                 </div>
                 <h2 
                 className="text-xl font-bold"
                 >
-                    {title}{`${featuredImage}`}
+                    {title}
                 </h2>
             </div>
         </Link>

@@ -25,12 +25,18 @@ function PostForm({post}) {
             if(file) {
                 appwriteService.deleteFile(post.featuredImage)
             }
-            const dbPost = await appwriteService.updatePost(post.$id, {
-                ...data,
-                featuredImage: file ? file.$id : undefined,
+            
+            const dbPost = await appwriteService.updatePost({
+                slug: post.$id,
+                title: data.title,
+                content: data.content,
+                featuredImage: file ? file.$id : post.featuredImage,
+                status: data.status
             })
+            
             if(dbPost) {
                 navigate(`/post/${dbPost.$id}`)
+                console.log(dbPost.$id);
             }
         } else {
             const file = await appwriteService.uploadFile(data.image[0])
@@ -38,6 +44,8 @@ function PostForm({post}) {
             if(file) {
                 const fileId = file.$id
                 data.featuredImage = fileId
+                console.log(userData);
+                
                 const dbPost = await appwriteService.createPost({
                     ...data,
                     userId: userData.$id
@@ -50,13 +58,16 @@ function PostForm({post}) {
     }
 
     const slugTransform = useCallback((value) => {
-        if (value && typeof value === 'string') {
+        if (value && typeof value === "string") {
             return value
-                .trim()
-                .toLowerCase()
-                .replace(/^[a-zA-Z\d\s]+/g, '-')
-                .replace(/\s/g, '-')
-                .replace(/^-+/, '')  
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9._-]/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^[._-]+|[._-]+$/g, "")
+            .substring(0, 36)
+            .replace(/[._-]+$/, "") || "default";
+                 
         } else {
             return "";
         }
@@ -104,7 +115,7 @@ function PostForm({post}) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFileView(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
