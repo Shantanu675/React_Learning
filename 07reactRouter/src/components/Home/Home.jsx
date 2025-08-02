@@ -40,7 +40,7 @@ export default function Home() {
                 <img className="sm:w-96 w-48" src="https://images.pexels.com/photos/5386339/pexels-photo-5386339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="image2" />
             </div>
 
-            <h1 className="text-center text-2xl sm:text-5xl py-10 font-medium">Lorem Ipsum Yojo</h1>
+            <h1 className="text-center text-2xl sm:text-5xl py-10 font-medium text-blue-400">Lorem Ipsum Yojo</h1>
         </div>
     );
 }

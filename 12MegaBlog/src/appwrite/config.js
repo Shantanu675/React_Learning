@@ -1,5 +1,4 @@
-import { config } from "process";
-import { conf } from "../conf.js";
+import conf from "../conf/conf";
 import {Client, ID, Databases, Storage, Query} from "appwrite";
 
 export class Service{
@@ -10,12 +9,12 @@ export class Service{
     constructor(){
         this.client
         .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectid);
+        .setProject(conf.appwriteProjectId);
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title, slug, content, featuredimage, status, userId}){
+    async createPost({title, slug, content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -24,7 +23,7 @@ export class Service{
                 {
                     title, 
                     content, 
-                    featuredimage, 
+                    featuredImage, 
                     status, 
                     userId
                 }
@@ -44,8 +43,7 @@ export class Service{
                     title, 
                     content, 
                     featuredimage, 
-                    status, 
-                    userId
+                    status
                 }
             )
         } catch (error) {
@@ -82,13 +80,14 @@ export class Service{
 
     async getPosts(queries = [Query.equal("status","active")]){
         try {
+            
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
             )
         } catch (error) {
-            console.log("Appwrite service :: getPosts :: error ",error);
+            console.log(conf.appwriteProjectId,"Appwrite service :: getPosts :: error ",error);
             return false;
         }
     }
@@ -120,8 +119,10 @@ export class Service{
         }
     }
 
-    getFilePreview(fileId){
-        return this.bucket.deleteFile(
+    getFileView(fileId){
+        console.log("."+fileId+".");
+        
+        return this.bucket.getFileView(
             conf.appwriteBucketId,
             fileId
         )

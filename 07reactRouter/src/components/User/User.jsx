@@ -5,7 +5,7 @@ function User() {
     const {id} = useParams()
   return (
     <>
-      <h1 className="bg-green-300">User : {id}</h1>
+      <h1 className="bg-lime-300">User : {id}</h1>
     </>
   )
 }

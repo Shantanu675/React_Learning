@@ -136,7 +136,7 @@ function Footer(){
                         </div>
                     </div>
                 </div>
-            </section>
+        </section>
       )
     }
 
