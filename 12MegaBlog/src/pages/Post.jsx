@@ -35,7 +35,7 @@ export default function Post() {
     return post ? (
         <div className="py-8">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+                <div className="w-full flex justify-center mb-4 relative border-l-fuchsia-950 rounded-xl p-2">
                     <img
                         src={appwriteService.getFileView(post.featuredImage)}
                         alt={post.title}
@@ -56,16 +56,16 @@ export default function Post() {
                     )}
                 </div>
                 <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
+                    <h1 className="text-4xl font-bold text-black">{post.title}</h1>
                 </div>
-                <div className="browser-css">
+                <div className="browser-css text-xl text-gray-900">
                     {parse(post.content)}
                 </div>
-                <div className="text-blue-700 font-extrabold">
-                    {`${userData.name}`}
-                    <br />
-                    {`@${userData.email}`}
+                <div className="ml-auto text-blue-500 font-extrabold text-right">
+                    <div>{userData.name}</div>
+                    <div>@{userData.email}</div>
                 </div>
+
             </Container>
         </div>
     ) : null;
