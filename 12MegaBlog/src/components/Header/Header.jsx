@@ -43,10 +43,10 @@ function Header(){
                 <nav className="flex">
                     <div className="mr-4">
                         <Link to='/'>
-                            <Logo width='70px' />
+                            <Logo width='160px' />
                         </Link>
                     </div>
-                    <ul className="flex ml-auto rounded-lg">
+                    <ul className="flex ml-auto rounded-lg mt-5">
                         {navItems.map((item) => 
                             item.active ? (
                                 <li key={item.name}>

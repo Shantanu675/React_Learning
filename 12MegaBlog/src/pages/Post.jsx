@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
-import { Button, Container } from "../components";
+import { Button, Container, Comments } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
@@ -61,11 +61,18 @@ export default function Post() {
                 <div className="browser-css text-xl text-gray-900">
                     {parse(post.content)}
                 </div>
-                <div className="ml-auto text-blue-500 font-extrabold text-right">
+                <div className="flex justify-between items-start m-10">
+                <div className="text-red-500 font-extrabold text-center">
+                    <div className="text-3xl">♡</div>
+                    <div className="text-sm">12 M</div>
+                </div>
+                <div className="text-blue-500 font-extrabold text-right">
                     <div>{userData.name}</div>
                     <div>@{userData.email}</div>
                 </div>
+                </div>
 
+                <Comments/>
             </Container>
         </div>
     ) : null;

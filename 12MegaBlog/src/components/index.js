@@ -12,6 +12,7 @@ import PostCard from './PostCard'
 import AuthLayout from './AuthLayout'
 import Input from './Input'
 import Select from './Select'
+import Comments from './Comments'
 
 export {
     Header,
@@ -27,5 +28,6 @@ export {
     PostCard,
     AuthLayout,
     Input,
-    Select
+    Select,
+    Comments
 }
